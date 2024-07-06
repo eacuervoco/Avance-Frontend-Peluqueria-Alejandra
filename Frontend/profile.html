@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Dairo Camacho" />
+  <meta name="description" content="Peluquería Alejandra" />
+  <meta name="copyright" content="Dairo Camacho" />
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+  <title>Profile</title>
+  <!--Importar Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Importar CDN de Estilos de Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!-- Mis estilos -->
+  <link rel="stylesheet" href="./css/profile.css" />
+</head>
+
+<body class="content">
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">
+
+          <div class="flow-text">
+            <img src="./img/peluqueria_80x53.png" alt="imagen del rostro de una mujer en blanco y negro" />
+            
+          </div>
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="waves-effect waves-light"><a href="Login.html">Inicio</a></li>
+          <li class="waves-effect waves-light"><a href="citas.html">Citas</a></li>
+          <li class="waves-effect waves-light"><a href="historial.html">Historial</a></li>
+          <li class="waves-effect waves-light"><a href="profile.html">Perfil</a></li>
+          <li class="">
+            <div class="switch">
+              <label>
+                Off
+                <input type="checkbox" id="contrast" />
+                <span class="lever"></span>
+                On
+              </label>
+            </div>
+          </li>
+          <li class="">
+            <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ear" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
+                <path d="M10 10a3 3 0 1 1 5 2.2" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Citas</a></li>
+      <li><a href="#">Historial</a></li>
+      <li><a href="#">Perfil</a></li>
+      <li class="">
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" />
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+      </li>
+      <li class="">
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ear" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
+            <path d="M10 10a3 3 0 1 1 5 2.2" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </header>
+  <main>
+    <div class="registro">
+      <div class="form-container">
+        <h1 class="title">Peluqueria Alejandra</h1>
+        <img class="logo" src="img/peluqueria_medio_300x200.png" alt="logo"> 
+  
+        <form id="register-form" action="/" class="form">
+          <h3 class="subtitle"> Editar Perfil </h3>                          
+        
+          <div class="input-field">
+            <label for="nombres" class="labels">Nombres completos</label>            
+            <i class="material-icons prefix">perm_identity</i>                                     
+            <input type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre"> 
+          </div> 
+  
+          <div class="input-field">
+            <label for="apellidos" class="labels">Apellidos completos</label> 
+            <i class="material-icons prefix">perm_identity</i>                                     
+            <input type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido"> 
+          </div> 
+  
+          <div class="input-field">
+            <label for="nacimiento" class="labels">Fecha Nacimiento</label>  
+            <i class="material-icons prefix">today</i>                                     
+            <input type="date" name="nacimiento" id="nacimiento" placeholder="Fecha Nacimiento"> 
+          </div> 
+  
+          <div class="input-field">
+            <label for="telefono" class="labels">Telefono</label> 
+            <i class="material-icons prefix">settings_phone</i>                                     
+            <input type="text" name="telefono" id="telefono" placeholder="Telefono"> 
+          </div> 
+  
+          <div class="input-field">
+            <label for="email" class="labels">Email</label> 
+            <i class="material-icons prefix">markunread</i>                                     
+            <input type="text" name="email" id="email" placeholder="@soy.sena.edu.co"> 
+          </div> 
+  
+          <div class="input-field">
+            <label for="password-new" class="labels">Asigne una Contraseña</label> 
+            <i class="material-icons prefix">verified_user</i>                                     
+            <input type="password" name="password" id="password-new" placeholder="*********"> 
+          </div> 
+  
+          <div class="input-field">
+            <label for="password-reconfirmado" class="labels">Confirmar Contraseña</label> 
+            <i class="material-icons prefix">verified_user</i>                                     
+            <input type="password" name="password" id="password-reconfirmado" placeholder="*********">
+          </div> 
+  
+          <div class="input-field">
+            <label for="password-anterior" class="labels">Ingrese su contraseña actual</label> 
+            <i class="material-icons prefix">verified_user</i>                                     
+            <input type="password" name="password" id="password-anterior" placeholder="*********"> 
+          </div> 
+  
+          <button class="primary-button" type="button" name="action">Actualizar
+            <i class="material-icons right">done_all</i>
+          </button>
+  
+          <button class="secondary-button" type="button" name="action">Atras
+            <i class="material-icons right">undo</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+  
+
+  <footer></footer>
+
+  <!-- JavaScript de Materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- JavaScript propio -->
+  <script src="./js/profile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Dairo Camacho, Edwin Cuervo" />
+  <meta name="description" content="Peluquería Alejandra" />
+  <meta name="copyright" content="Dairo Camacho, Edwin Cuervo" />
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+  <title>Peluquería Alejandra</title>
+  <!--Importar Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- Importar CDN de Estilos de Materialize -->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> 
+
+
+  <!-- Mis estilos -->
+  <link rel="stylesheet" href="./css/Login.css" />
+</head>
+
+<body class="content">
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <div class="switch">
+              <label>
+                Off
+                <input type="checkbox" />
+                <span class="lever"></span>
+                On
+              </label>
+            </div>
+          </li>
+          <li>
+            <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ear" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
+                <path d="M10 10a3 3 0 1 1 5 2.2" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- NAVBAR HAMBURGUESA OCULTO -->
+    <ul class="sidenav" id="mobile-demo">
+      <li>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" />
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ear" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
+            <path d="M10 10a3 3 0 1 1 5 2.2" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <main>
+    <div class="login">
+      <div class="form-container">
+        <h3 class="title">Peluqueria Alejandra</h3>
+        <img src="img/peluqueria_medio_300x200.png" alt="logo" class="logo">
+
+          <form id="register-form" action="/" class="form">
+
+            <label for="email" class="email" >Direccion de Email</label>
+            <input name="email" type="text" id="email" placeholder="@soy.sena.edu.co" class="input input-email">
+            <label for="password" class="label" >Password</label>
+            <input name="password" type="password" id="password" placeholder="*********" class="input input-password">
+            <a class= "subtitle" href="recovery.html">¿Olvidaste tu contraseña?</a>
+
+            <button type="submit" class="primary-button sesion-button"> Iniciar sesion</button>
+            <button type="submit" class="secondary-button signup-button ">Crea tu Cuenta</button>
+            </form>
+            
+            <!--<a href="citas.html"> -->
+            
+            <!--</a> -->
+
+            <!-- <a href="register.html"> -->            
+          
+            <!-- </a> --> 
+        </div>
+    </div>
+
+
+ 
+
+  <!-- JavaScript de Materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- JavaScript propio -->
+  <script src="./js/Login.js"></script>
+  
+</body>
+
+</html>
+
+
+  

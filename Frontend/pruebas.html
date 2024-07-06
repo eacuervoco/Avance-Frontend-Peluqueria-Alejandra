@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peluquería Alejandra - Agendamiento de citas</title>
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .input {
+      margin-bottom: 15px;
+    }
+    .labels {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .primary-button, .secondary-button {
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="registro">                    
+  <div class="form-container">
+    <h1 class="title">Peluquería Alejandra</h1>
+    <h1 class="title">Agendamiento de citas</h1>
+    <form id="appointmentForm" class="form">
+      
+      <div class="input">
+        <label for="date" class="labels">Fecha del servicio</label>                                                                                
+        <input type="date" name="date" id="date" placeholder="Fecha del servicio"> 
+      </div> 
+
+      <div class="input">
+        <label for="time" class="labels">Hora del servicio</label>                                                                                
+        <input type="time" name="time" id="time" placeholder="Hora del servicio">
+      </div> 
+          
+      <div class="input">
+        <label for="notes" class="labels">Agrega descripción de tu servicio</label>                                                                                
+        <input type="text" name="notes" id="notes" placeholder="Nota de tu servicio"> 
+      </div>
+
+      <label>Selecciona el servicio</label>
+      <select id="serviceSelect" class="browser-default">
+        <option value="" disabled selected></option>
+        <option value="Cepillados de Pelo" data-price="15000">Cepillados de Pelo</option>
+        <option value="Corte en V" data-price="30000">Corte en V</option>
+        <option value="Corte en capas" data-price="25000">Corte en capas</option>
+      </select> 
+
+      <label>Selecciona tu estilista</label>
+      <select id="employeeSelect" class="browser-default">
+        <option value="" disabled selected></option>
+        <option value="Gina Marcela Lopez">Gina Marcela Lopez</option>
+        <option value="Edwin Alexander Cuervo">Edwin Alexander Cuervo</option>                                            
+      </select>  
+      
+      <div class="input">
+        <label for="client" class="labels">Digita tu ID de Cliente</label>                                                                                
+        <input type="text" name="client" id="client" placeholder="Ingresa tu ID de Cliente"> 
+      </div>
+
+      <button class="primary-button" type="submit" name="action">Confirmar servicio
+        <i class="material-icons right">send</i>
+      </button>
+      
+      <button class="secondary-button" type="button" name="action">Atras
+        <i class="material-icons right">undo</i>
+      </button>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('serviceSelect').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const service = selectedOption.value;
+    const price = selectedOption.getAttribute('data-price');
+    
+    // Eliminar los inputs previos si existen
+    const existingServiceInput = document.getElementById('selectedService');
+    if (existingServiceInput) {
+      existingServiceInput.remove();
+    }
+    const existingPriceInput = document.getElementById('servicePrice');
+    if (existingPriceInput) {
+      existingPriceInput.remove();
+    }
+    
+    // Crear nuevos inputs
+    const serviceInput = document.createElement('input');
+    serviceInput.type = 'hidden';
+    serviceInput.id = 'selectedService';
+    serviceInput.name = 'service';
+    serviceInput.value = service;
+
+    const priceInput = document.createElement('input');
+    priceInput.type = 'hidden';
+    priceInput.id = 'servicePrice';
+    priceInput.name = 'price';
+    priceInput.value = price;
+    
+    // Agregar los inputs al formulario
+    const form = document.getElementById('appointmentForm');
+    form.appendChild(serviceInput);
+    form.appendChild(priceInput);
+  });
+
+  document.getElementById('employeeSelect').addEventListener('change', function() {
+    const selectedEmployee = this.value;
+    
+    // Eliminar el input previo si existe
+    const existingEmployeeInput = document.getElementById('selectedEmployee');
+    if (existingEmployeeInput) {
+      existingEmployeeInput.remove();
+    }
+    
+    // Crear nuevo input
+    const employeeInput = document.createElement('input');
+    employeeInput.type = 'hidden';
+    employeeInput.id = 'selectedEmployee';
+    employeeInput.name = 'employee';
+    employeeInput.value = selectedEmployee;
+    
+    // Agregar el input al formulario
+    const form = document.getElementById('appointmentForm');
+    form.appendChild(employeeInput);
+  });
+
+  const myForm = document.getElementById('appointmentForm');
+  myForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const dataForm = new FormData(event.currentTarget);
+    let formDataJSON = {};
+    dataForm.forEach((value, key) => {
+      formDataJSON[key] = value;
+    });
+    
+    const jsonData = JSON.stringify(formDataJSON);
+    console.log(jsonData);
+
+    fetch('http://localhost:6543/api/appointment', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          //'Authorization': `Bearer ${apiKey}`
+      },
+      body: jsonData,
+    }).then(response => {
+      if(response.ok) {
+          console.log('Funciona');
+      } else {
+          console.log('Error');
+      }
+    }).catch(error => console.error('Error al hacer el fetch:' + error));
+  });
+</script>
+
+</body>
+</html>
+
+

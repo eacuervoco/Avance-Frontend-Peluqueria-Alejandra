@@ -39,7 +39,7 @@ for (let i = 0; i < inputs.length; i++) {
 
 async function obtenerToken(user) {
     try {
-        const response = await fetch("http://localhost:6543/api/login", {
+        const response = await fetch("http://localhost:6543/api/v1/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',    

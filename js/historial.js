@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    fetch('http://localhost:6543/api/appointment', {
+    fetch('http://localhost:6543/api/v1/appointment', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

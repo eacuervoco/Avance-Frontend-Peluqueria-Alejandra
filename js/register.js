@@ -50,7 +50,7 @@ myForm.addEventListener ('submit', (event) => {
 
   //const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGFkbWluLmNvbSIsImlzcyI6IkFwcCBQZWx1cXVlcsOtYSIsImlkIjoxLCJleHAiOjE3MTM5MzcxMDF9.lNXS_eZYVOvOhC_qpSDRe7VCJ-qpRaY91kxN4IqxdB0";
   
-  fetch('http://localhost:6543/api/client', {
+  fetch('http://localhost:6543/api/v1/client', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

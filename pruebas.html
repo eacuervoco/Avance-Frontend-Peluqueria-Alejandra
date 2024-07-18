@@ -146,7 +146,7 @@
     const jsonData = JSON.stringify(formDataJSON);
     console.log(jsonData);
 
-    fetch('http://localhost:6543/api/appointment', {
+    fetch('http://localhost:6543/api/v1/appointment', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',

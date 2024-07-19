@@ -37,53 +37,37 @@ for (let i = 0; i < inputs.length; i++) {
 
 
 
-async function obtenerToken(user) {
+async function obtenerToken(userData) {
     try {
         const response = await fetch("http://localhost:6543/api/v1/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',    
             },
-            body: user
-            
+            body: JSON.stringify(userData)
         });
-
-        if (response.ok) {
-            // Si la respuesta es exitosa, redirigir o mostrar un mensaje de éxito
-            console.log("Login exitoso");
-           window.location.href = "/citas.html"; // Redirigir al dashboard u otra página
-        }
 
         if (!response.ok) {
             throw new Error('No se pudo obtener el token de acceso');
         }
         const data = await response.json();
+
         localStorage.setItem('accessToken', data.JwtToken);
+
+        window.location.href = "/citas.html";
     } catch (error) {
-        console.error('Error al obtener el token de acceso:', error);
+        console.error('Error al obtener el token de acceso: ', error);
+        alert('Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.');
     }
 }
 
 const myForm = document.querySelector('form');
 myForm.addEventListener ('submit', (event) => {
   event.preventDefault();
-  const dataForm = new FormData (event.currentTarget) 
-  let formDataJSON = { };
-  dataForm.forEach((value, key)  => {
-    formDataJSON [key] = value;
-  });
-    
-  const jsonData = JSON.stringify (formDataJSON);
-  console.log (jsonData );
+  const formData = new FormData(event.currentTarget);
+  const formDataObject = Object.fromEntries(formData.entries());
 
-  obtenerToken(jsonData);
-
-
-  
-  setTimeout(function(){
-    console.log(localStorage.getItem('accessToken'));
-  },1000);
-
+  obtenerToken(formDataObject);
 });
 
 

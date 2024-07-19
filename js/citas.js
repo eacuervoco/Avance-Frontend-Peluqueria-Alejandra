@@ -57,7 +57,7 @@ myForm.addEventListener('submit', (event) => {
     console.log(jsonData);
 
     // Token JWT
-  const token = localStorage.getItem('accessToken'); // Obtener el token JWT del almacenamiento local
+  const token = sessionStorage.getItem('accessToken'); // Obtener el token JWT del almacenamiento local
 fetch('http://localhost:6543/api/v1/appointment', {
     method: 'POST',
     headers: {

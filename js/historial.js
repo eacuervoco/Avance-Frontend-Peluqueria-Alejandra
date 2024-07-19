@@ -34,7 +34,7 @@ for (let i = 0; i < inputs.length; i++) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('accessToken');
+    const token = sessionStorage.getItem('accessToken');
     if (!token) {
         console.error('No se encontró un token de autenticación.');
         return;

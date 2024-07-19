@@ -52,7 +52,7 @@ async function obtenerToken(userData) {
         }
         const data = await response.json();
 
-        localStorage.setItem('accessToken', data.JwtToken);
+        sessionStorage.setItem('accessToken', data.JwtToken);
 
         window.location.href = "/citas.html";
     } catch (error) {

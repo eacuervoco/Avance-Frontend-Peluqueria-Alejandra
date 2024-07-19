@@ -19,47 +19,32 @@ function toggleHighContrast() {
 document.addEventListener('DOMContentLoaded', toggleHighContrast);
 
 
-//inicio de codigo para cada modulo.
-
-const myForm = document.querySelector('form');
-myForm.addEventListener('submit', (event) => {
+// FORMULARIO DE CITAS
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const dataForm = new FormData(event.currentTarget);
-  let formDataJSON = {};
-  dataForm.forEach((value, key) => {
-    // Convertir service, employee y client a números si es posible
-    if (key === 'service' || key === 'employee' || key === 'client') {
-      formDataJSON[key] = parseInt(value);
-    } else {
-      formDataJSON[key] = value;
-    }
+  let jsonData = {};
+
+  formData.forEach((value, key) => {
+    jsonData[key] = key === 'service' || key === 'employee' || key === 'client' ? parseInt(value, 10) : value;
   });
 
-  // Formatear el tiempo a "00:30:00.000"
-  const formattedTime = "00:30:00.000";
-  formDataJSON['time'] = formattedTime;
+  jsonData['time'] = "00:30:00.000"; // Formatear el tiempo a "00:30:00.000"
 
-  // Convertir el objeto a JSON
-  const jsonData = JSON.stringify(formDataJSON);
-  console.log(jsonData);
-
-  // Token JWT
   const token = sessionStorage.getItem('accessToken'); // Obtener el token JWT del almacenamiento local
+
   fetch('http://localhost:6543/api/v1/appointment', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}` // Usar el token JWT del almacenamiento local
     },
-    body: jsonData,
-  }).then(response => {
-    if (response.ok) {
-      console.log('Funciona');
-    } else {
-      console.log('Error');
-    }
-  }).catch(error => console.error('Error al hacer el fetch:' + error));
+    body: JSON.stringify(jsonData),
+  })
+    .then(response => response.ok ? console.log('Funciona') : console.log('Error'))
+    .catch(error => console.error('Error al hacer el fetch:', error));
 });
 
 // HABILITANDO INPUTS SECUENCIALMENTE

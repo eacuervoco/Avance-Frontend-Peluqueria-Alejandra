@@ -80,3 +80,31 @@ setupSequentialInputs([
   'client',
   'submitButton'
 ]);
+
+
+// PETICIÓN GET A LA API, CUANDO CAGA LA PAGINA PARA OBTENER LOS HORARIOS DE TRABAJO HABILITADOS
+const allowedDates = [];
+document.addEventListener('DOMContentLoaded', function () {
+  const apiUrl = `http://localhost:6543/api/v1/workinghours/enabled`;
+  const token = sessionStorage.getItem('accessToken');
+
+  fetch(apiUrl, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      const dates = data.content.map(workinghours => workinghours.startDate.split('T')[0]);
+
+      const uniqueDates = new Set(dates); // Crea un Set con elementos únicos de 'dates'
+
+      for (const element of uniqueDates) {
+        allowedDates.push(element); // Agrega cada elemento único a 'allowedDates'
+      }
+      console.log(allowedDates);
+    })
+    .catch(error => {
+      console.error('Error: ', error);
+    });
+});

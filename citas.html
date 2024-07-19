@@ -97,12 +97,12 @@
               <form class="form" id="register-form">
                   <div class="input">
                       <label for="date" class="labels">Fecha del servicio</label>
-                      <input type="date" name="date" id="date" placeholder="Fecha del servicio">
+                      <input type="text" class="datepicker" name="date" id="date">
                   </div>
   
                   <div class="input">
                       <label for="time" class="labels">Hora del servicio</label>
-                      <input type="time" name="time" id="time" placeholder="Hora del servicio" step="1800">
+                      <input type="text" class="timepicker" name="time" id="time">
                   </div>
   
                   <div class="input">
@@ -134,7 +134,7 @@
                       <input type="text" name="client" id="client" placeholder="Ingresa tu ID de Cliente">
                   </div>
   
-                  <button class="primary-button" type="submit">Agenda tu cita
+                  <button class="primary-button" type="submit" id="submitButton">Agenda tu cita
                       <i class="material-icons right">send</i>
                   </button>
               </form>
@@ -146,7 +146,7 @@
   <footer></footer>
 
    <!-- JavaScript de Materialize -->
-   !*<script src="./js/materialize.min.js"></script>
+   <script src="./js/materialize.min.js"></script>
    <!-- JavaScript propio -->
    <script src="./js/citas.js"></script>
    

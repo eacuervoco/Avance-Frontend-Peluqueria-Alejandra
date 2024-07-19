@@ -108,3 +108,44 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error: ', error);
     });
 });
+
+// CONFIGURACIÓN PARA EL INPUT DE DATE
+document.addEventListener('DOMContentLoaded', function () {
+  const elements = document.querySelectorAll('.datepicker');
+
+  const disableDayFn = function (data) {
+    // Convertir la fecha a formato YYYY-MM-DD
+    const formattedDate = data.toISOString().slice(0, 10);
+    // Verificar si la fecha está en el array de fechas permitidas
+    return !allowedDates.includes(formattedDate);
+    /* 
+        // Deshabilitar domingos y sábados
+        if (date.getDay() === 0 || date.getDay() === 6) {
+          return true;
+        }
+    
+        // Deshabilitar fechas específicas (por ejemplo, 25 de diciembre)
+        if (date.getMonth() === 11 && date.getDate() === 25) {
+          return true;
+        }
+    
+        // Devolver false para habilitar otras fechas
+        return false; 
+        */
+  };
+  const options = {
+    autoClose: true,
+    format: 'dd mmm yyyy',
+    disableDayFn: disableDayFn
+  };
+  const instances = M.Datepicker.init(elements, options);
+});
+
+// CONFIGURACIÓN PARA EL INPUT DE TIME
+document.addEventListener('DOMContentLoaded', function () {
+  const elements = document.querySelectorAll('.timepicker');
+  const options = {
+    defaultTime: '08:00AM', // Customize additional options as needed
+  };
+  const instances = M.Timepicker.init(elements, options);
+});

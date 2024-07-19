@@ -48,53 +48,35 @@ form.addEventListener('submit', (event) => {
 });
 
 // HABILITANDO INPUTS SECUENCIALMENTE
-const dateInput = document.getElementById('date');
-const timeInput = document.getElementById('time');
-const notesInput = document.getElementById('notes');
-const serviceInput = document.getElementById('service');
-const employeeInput = document.getElementById('employee');
-const clientInput = document.getElementById('client');
-const submitButton = document.getElementById('submitButton');
-// Inicialmente deshabilitamos todos los inputs excepto el primero
-timeInput.disabled = true;
-notesInput.disabled = true;
-serviceInput.disabled = true;
-employeeInput.disabled = true;
-clientInput.disabled = true;
-submitButton.disabled = true;
-// vamos habilitando uno a uno cada input conforme se vayan llenando
-dateInput.addEventListener('change', () => {
-  if (dateInput.value !== '') {
-    timeInput.disabled = false;
+function setupSequentialInputs(inputIds) {
+  const inputs = inputIds.map(id => document.getElementById(id));
+  
+  function enableNextInput(currentIndex) {
+    if (currentIndex < inputs.length - 1) {
+      inputs[currentIndex + 1].disabled = false;
+    }
   }
-});
 
-timeInput.addEventListener('change', () => {
-  if (timeInput.value !== '') {
-    notesInput.disabled = false;
-  }
-});
+  // Inicialmente deshabilitamos todos los inputs excepto el primero
+  inputs.slice(1).forEach(input => input.disabled = true);
 
-notesInput.addEventListener('change', () => {
-  if (timeInput.value !== '') {
-    serviceInput.disabled = false;
-  }
-});
+  // Agregar event listeners a todos los inputs excepto el último
+  inputs.slice(0, -1).forEach((input, index) => {
+    input.addEventListener('change', () => {
+      if (input.value !== '') {
+        enableNextInput(index);
+      }
+    });
+  });
+}
 
-serviceInput.addEventListener('change', () => {
-  if (timeInput.value !== '') {
-    employeeInput.disabled = false;
-  }
-});
-
-employeeInput.addEventListener('change', () => {
-  if (timeInput.value !== '') {
-    clientInput.disabled = false;
-  }
-});
-
-clientInput.addEventListener('change', () => {
-  if (timeInput.value !== '') {
-    submitButton.disabled = false;
-  }
-});
+// Uso de la función
+setupSequentialInputs([
+  'date',
+  'time',
+  'notes',
+  'service',
+  'employee',
+  'client',
+  'submitButton'
+]);

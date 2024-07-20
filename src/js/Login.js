@@ -42,7 +42,7 @@ async function obtenerToken(userData) {
         const response = await fetch("http://localhost:6543/api/v1/login", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',    
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(userData)
         });
@@ -54,7 +54,14 @@ async function obtenerToken(userData) {
 
         sessionStorage.setItem('accessToken', data.JwtToken);
 
-        window.location.href = "/citas.html";
+        // Decodificar el payload del token
+        const payload = JSON.parse(atob(data.JwtToken.split('.')[1]));
+
+        // Almacenar id y role en sessionStorage
+        sessionStorage.setItem('idUser', payload.id);
+        sessionStorage.setItem('roleUser', payload.role);
+
+        window.location.href = "/src/citas.html";
     } catch (error) {
         console.error('Error al obtener el token de acceso: ', error);
         alert('Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.');

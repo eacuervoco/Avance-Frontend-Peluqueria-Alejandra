@@ -50,7 +50,7 @@ form.addEventListener('submit', (event) => {
 // HABILITANDO INPUTS SECUENCIALMENTE
 function setupSequentialInputs(inputIds) {
   const inputs = inputIds.map(id => document.getElementById(id));
-  
+
   function enableNextInput(currentIndex) {
     if (currentIndex < inputs.length - 1) {
       inputs[currentIndex + 1].disabled = false;

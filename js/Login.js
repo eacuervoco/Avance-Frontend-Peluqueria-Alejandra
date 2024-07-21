@@ -61,7 +61,7 @@ async function obtenerToken(userData) {
         sessionStorage.setItem('clientId', payload.id);
         sessionStorage.setItem('clientRole', payload.role);
 
-        window.location.href = "/src/citas.html";
+        window.location.href = "/citas.html";
     } catch (error) {
         console.error('Error al obtener el token de acceso: ', error);
         alert('Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.');

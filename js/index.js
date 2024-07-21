@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var elem = document.querySelector('.sidenav');
     var instance = M.Sidenav.init(elem);
+    sessionStorage.clear();
 });
 
 // ACTIVAR CONTRASTE ALTO

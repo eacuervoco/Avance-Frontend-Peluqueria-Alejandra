@@ -24,15 +24,15 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const dataForm = new FormData(event.currentTarget);
-  let jsonData = {};
-
-  formData.forEach((value, key) => {
-    jsonData[key] = key === 'service' || key === 'employee' || key === 'client' ? parseInt(value, 10) : value;
-  });
-
-  jsonData['time'] = "00:30:00.000"; // Formatear el tiempo a "00:30:00.000"
-
+  const jsonData = {
+    date: document.getElementById('date').value,
+    time: convertTo24Hour(document.getElementById('time').value),
+    notes: document.getElementById('notes').value,
+    productId: parseInt(document.getElementById('service').value),
+    employeeId: parseInt(document.getElementById('employee').value),
+    clientId: parseInt(sessionStorage.getItem('clientId'))
+  };
+  
   const token = sessionStorage.getItem('accessToken'); // Obtener el token JWT del almacenamiento local
 
   fetch('http://localhost:6543/api/v1/appointment', {
@@ -77,7 +77,6 @@ setupSequentialInputs([
   'notes',
   'service',
   'employee',
-  'client',
   'submitButton'
 ]);
 
@@ -135,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   const options = {
     autoClose: true,
-    format: 'dd mmm yyyy',
+    format: 'yyyy-mm-dd',
     disableDayFn: disableDayFn
   };
   const instances = M.Datepicker.init(elements, options);
@@ -145,7 +144,24 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const elements = document.querySelectorAll('.timepicker');
   const options = {
-    defaultTime: '08:00AM', // Customize additional options as needed
+    defaultTime: '08:00', 
+    format: 'HH:mm'
   };
   const instances = M.Timepicker.init(elements, options);
 });
+
+// Función para convertir hora de formato 12 horas a formato 24 horas
+function convertTo24Hour(time) {
+  const [timePart, modifier] = time.split(' ');
+  let [hours, minutes] = timePart.split(':');
+
+  if (hours === '12') {
+    hours = '00';
+  }
+
+  if (modifier === 'PM') {
+    hours = parseInt(hours, 10) + 12;
+  }
+
+  return `${hours}:${minutes}`;
+}

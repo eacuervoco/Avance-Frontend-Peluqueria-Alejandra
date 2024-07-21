@@ -25,9 +25,9 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const initialDate = document.getElementById('initialDate').value;
-    const initialTime = document.getElementById('initialTime').value;
+    const initialTime = convertTo24Hour(document.getElementById('initialTime').value);
     const finalDate = document.getElementById('finalDate').value;
-    const finalTime = document.getElementById('finalTime').value;
+    const finalTime = convertTo24Hour(document.getElementById('finalTime').value);
 
     const jsonData = {
         startDate: `${initialDate}T${initialTime}`,
@@ -117,3 +117,19 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     const instances = M.Timepicker.init(elements, options);
   });
+
+// Función para convertir hora de formato 12 horas a formato 24 horas
+function convertTo24Hour(time) {
+    const [timePart, modifier] = time.split(' ');
+    let [hours, minutes] = timePart.split(':');
+
+    if (hours === '12') {
+        hours = '00';
+    }
+
+    if (modifier === 'PM') {
+        hours = parseInt(hours, 10) + 12;
+    }
+
+    return `${hours}:${minutes}`;
+}

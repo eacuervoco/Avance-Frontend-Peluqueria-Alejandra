@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Dairo Camacho" />
+    <meta name="description" content="Peluquería Alejandra" />
+    <meta name="copyright" content="Dairo Camacho" />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+    <!--Importar Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Importar CDN de Estilos de Materialize -->
+    <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection" />
+    <!-- Mis estilos -->
+    <link rel="stylesheet" href="./css/horarios.css" />
+    <title>Horarios</title>
+  </head>
+
+  <body class="content">
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">
+  
+            <div class="flow-text">
+              <img src="./img/peluqueria_80x53.png" alt="imagen del rostro de una mujer en blanco y negro" />
+              
+            </div>
+          </a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li class="waves-effect waves-light"><a href="login.html">Inicio</a></li>
+            <li class="waves-effect waves-light"><a href="citas.html">Citas</a></li>
+            <li class="waves-effect waves-light"><a href="historial.html">Historial</a></li>
+            <li class="waves-effect waves-light"><a href="profile.html">Perfil</a></li>
+            <li class="waves-effect waves-light"><a href="horarios.html">Horarios</a></li>
+            <li class="">
+              <div class="switch">
+                <label>
+                  Off
+                  <input type="checkbox" id="contrast" />
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+            </li>
+            <li class="">
+              <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ear" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
+                <path d="M10 10a3 3 0 1 1 5 2.2" />
+              </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="citas.html">Citas</a></li>
+        <li><a href="historial.html">Historial</a></li>
+        <li><a href="profile.html">Perfil</a></li>
+        <li><a href="profile.html">Perfil</a></li>
+        <li><a href="horarios.html">Horarios</a></li>
+        <li class="">
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" />
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </li>
+        <li class="">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ear" width="24" height="24"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
+            <path d="M10 10a3 3 0 1 1 5 2.2" />
+          </svg>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <div class="container">
+        <div class="row">
+          <h1 class="title">Peluquería Alejandra</h1>
+
+          <div class="section">
+            <h2 class="subtitle">Registrar Nuevo Horario</h2>
+
+            <form class="form" id="register-form">
+              <div class="container row">
+                <div class="container col l6">
+                  <div class="container">
+                    <span class="center-align">Fecha y hora inicial</span>
+                  </div>
+                  <div class="input col l6">
+                    <input
+                      type="text"
+                      class="datepicker center-align"
+                      name="initialDate"
+                      id="initialDate"
+                      placeholder="xxxx/xx/xx"
+                    />
+                  </div>
+                  <div class="input col l6">
+                    <input
+                      type="text"
+                      class="timepicker center-align"
+                      name="initialTime"
+                      id="initialTime"
+                      placeholder="xx : xx"
+                    />
+                  </div>
+                </div>
+                <div class="container col l6">
+                  <div class="container">
+                    <span class="center-align">Fecha y hora final</span>
+                  </div>
+                  <div class="input col l6">
+                    <input
+                      type="text"
+                      class="datepicker center-align"
+                      name="finalDate"
+                      id="finalDate"
+                      placeholder="xxxx/xx/xx"
+                    />
+                  </div>
+                  <div class="input col l6">
+                    <input
+                      type="text"
+                      class="timepicker center-align"
+                      name="finalTime"
+                      id="finalTime"
+                      placeholder="xx : xx"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="container col l3 m3 s5">
+                <button class="primary-button" type="submit" id="submitButton">
+                  Crear<i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="section">
+            <h2 class="subtitle">Horarios</h2>
+            <div class="container">
+              <div class="row">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Día</th>
+                      <th>Fecha inicio</th>
+                      <th>Hora inicio</th>
+                      <th>Fecha fin</th>
+                      <th>Hora fin</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Lunes</td>
+                      <td>2024-08-01</td>
+                      <td>08:00 AM</td>
+                      <td>2424-01-01</td>
+                      <td>06:00 PM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer></footer>
+
+    <!-- JavaScript de Materialize -->
+    <script src="./js/materialize.min.js"></script>
+    <!-- JavaScript propio -->
+    <script src="./js/horarios.js"></script>
+  </body>
+</html>

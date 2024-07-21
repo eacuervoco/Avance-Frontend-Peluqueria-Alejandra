@@ -58,8 +58,8 @@ async function obtenerToken(userData) {
         const payload = JSON.parse(atob(data.JwtToken.split('.')[1]));
 
         // Almacenar id y role en sessionStorage
-        sessionStorage.setItem('clientId', payload.id);
-        sessionStorage.setItem('clientRole', payload.role);
+        sessionStorage.setItem('userId', payload.id);
+        sessionStorage.setItem('userRole', payload.role);
 
         window.location.href = "/citas.html";
     } catch (error) {

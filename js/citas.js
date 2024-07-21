@@ -30,7 +30,7 @@ form.addEventListener('submit', (event) => {
     notes: document.getElementById('notes').value,
     productId: parseInt(document.getElementById('service').value),
     employeeId: parseInt(document.getElementById('employee').value),
-    clientId: parseInt(sessionStorage.getItem('clientId'))
+    clientId: parseInt(sessionStorage.getItem('userId'))
   };
   
   const token = sessionStorage.getItem('accessToken'); // Obtener el token JWT del almacenamiento local

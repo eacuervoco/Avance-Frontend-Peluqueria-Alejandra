@@ -32,14 +32,15 @@ async function fetchWorkingHours() {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) {
-            throw new Error('La petición GET falló');
+            const errorData = await response.text();
+            throw new Error(errorData || 'Error en la respuesta del servidor');
         }
         const data = await response.json();
 
         displayWorkingHours(data.content);
     } catch (error) {
-        console.error(error.message);
-        alert(error);
+        console.error('Error completo:', error);
+        alert('Se produjo un error: ' + error.message);
     }
 }
 
@@ -103,16 +104,16 @@ form.addEventListener('submit', async (event) => {
         });
 
         if (!response.ok) {
-            const errorBody = await response.text();
-            throw new Error(errorBody);
+            const errorData = await response.text();
+            throw new Error(errorData || 'Error en la respuesta del servidor');
         }
 
         const data = await response.json();
 
         displayWorkingHours(data);
     } catch (error) {
-        console.error('Error capturado: ', error.message);
-        alert("Error: " + JSON.stringify(error.message));
+        console.error('Error completo:', error);
+        alert('Se produjo un error: ' + error.message);
     }
 })
 
@@ -128,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const instances = M.Datepicker.init(elements, options);
 });
 
-  // CONFIGURACIÓN PARA EL INPUT DE TIME
+// CONFIGURACIÓN PARA EL INPUT DE TIME
 document.addEventListener('DOMContentLoaded', function () {
     const elements = document.querySelectorAll('.timepicker');
     const options = {

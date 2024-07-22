@@ -48,7 +48,8 @@ async function obtenerToken(userData) {
         });
 
         if (!response.ok) {
-            throw new Error('No se pudo obtener el token de acceso');
+            const errorData = await response.text();
+            throw new Error(errorData || 'Error en la respuesta del servidor');
         }
         const data = await response.json();
 
@@ -63,23 +64,23 @@ async function obtenerToken(userData) {
 
         window.location.href = "/citas.html";
     } catch (error) {
-        console.error('Error al obtener el token de acceso: ', error);
-        alert('Ocurrió un error al iniciar sesión. Por favor, inténtalo de nuevo.');
+        console.error('Error completo:', error);
+        alert('Se produjo un error: ' + error.message);
     }
 }
 
 const myForm = document.querySelector('form');
-myForm.addEventListener ('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(event.currentTarget);
-  const formDataObject = Object.fromEntries(formData.entries());
+myForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const formDataObject = Object.fromEntries(formData.entries());
 
-  obtenerToken(formDataObject);
+    obtenerToken(formDataObject);
 });
 
 
 
-document.querySelector('.signup-button').addEventListener ('click', (event) => {
+document.querySelector('.signup-button').addEventListener('click', (event) => {
     event.preventDefault();
     window.location.href = "/register.html";
 });

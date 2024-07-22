@@ -1,5 +1,3 @@
-
-
 // Inicialización del plugin para ocultar nav en pantallas medianas y pequeñas
 document.addEventListener('DOMContentLoaded', function () {
     var elem = document.querySelector('.sidenav');
@@ -33,35 +31,72 @@ for (let i = 0; i < inputs.length; i++) {
         }
     });
 }
-//inicio de codigo para cada modulo.
 
 
-const myForm = document.querySelector('form');
-myForm.addEventListener ('submit', (event) => {
-  event.preventDefault();
-  const dataForm = new FormData (event.currentTarget) 
-  let formDataJSON = { };
-  dataForm.forEach((value, key)  => {
-    formDataJSON [key] = value;
-  });
-    
-  const jsonData = JSON.stringify (formDataJSON);
-  console.log (jsonData );
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('register-form');
 
-  //const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGFkbWluLmNvbSIsImlzcyI6IkFwcCBQZWx1cXVlcsOtYSIsImlkIjoxLCJleHAiOjE3MTM5MzcxMDF9.lNXS_eZYVOvOhC_qpSDRe7VCJ-qpRaY91kxN4IqxdB0";
-  
-  fetch('http://localhost:6543/api/v1/client', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        //'Authorization': `Bearer ${apiKey}`
-    },
-    body: jsonData,
-  }).then(response => {
-    if(response.ok) {
-        console.log('Funciona');
-    } else {
-        console.log('Error');
-    }
-  }).catch(error => console.error('Error al hacer el fech:' + error));
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Previene el envío tradicional del formulario
+
+        try {
+            // Captura todos los datos del formulario
+            const formData = new FormData(form);
+            const formDataObject = Object.fromEntries(formData.entries());
+            // Obtiene el token de sessionStorage
+
+            // Divide los datos en dos paquetes
+            const userPack = {
+                email: formDataObject.email,
+                password: formDataObject.password,
+                confirmPassword: formDataObject.confirmPassword
+            };
+
+            
+            // Realiza la petición POST para crear el usuario
+
+            const userResponse = await fetch('http://localhost:6543/api/v1/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userPack),
+            });
+
+            if (!userResponse.ok) {
+                const errorData = await userResponse.text();
+                throw new Error(errorData || 'Error en la respuesta del servidor');
+            }
+
+            const clientPack = {
+                name: formDataObject.name,
+                lastName: formDataObject.lastName,
+                birthday: formDataObject.birthday,
+                phone: formDataObject.phone,
+                userId: userData.id
+                };
+            // Realiza la petición POST para crear el cliente
+            const clientResponse = await fetch('http://localhost:6543/api/v1/client', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(clientPack),
+            });
+
+            if (!clientResponse.ok) {
+                const errorData = await clientResponse.text();
+                throw new Error(errorData || 'Error en la respuesta del servidor');
+            }
+
+            const clientData = await clientResponse.json();
+
+            alert('Registro realizado con éxito.'); 
+            window.location.href = "/citas.html";
+            
+        } catch (error) {
+            console.error('Error completo:', error);
+            alert('Se produjo un error: ' + error.message);
+        }
+    });
 });

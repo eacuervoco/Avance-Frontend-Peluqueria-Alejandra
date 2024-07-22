@@ -43,7 +43,7 @@ form.addEventListener('submit', (event) => {
     },
     body: JSON.stringify(jsonData),
   })
-    .then(response => response.ok ? console.log('Funciona') : console.log('Error'))
+    .then(response => response.ok ? alert('Cita agendada con éxito') : alert('Error al crear la cita'))
     .catch(error => console.error('Error al hacer el fetch:', error));
 });
 

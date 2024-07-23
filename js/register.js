@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errorData || 'Error en la respuesta del servidor');
             }
 
+            const userData = await userResponse.json();
+
             const clientPack = {
                 name: formDataObject.name,
                 lastName: formDataObject.lastName,
